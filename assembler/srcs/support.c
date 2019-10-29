@@ -38,30 +38,67 @@ void		skip_comm(t_ass *d_asm, char *line)
 			J++;
 }
 
-int32_t		ft_atoi_size(const char *str, uint8_t size)
+static int nbrlen(unsigned long long num, int neg, int h)
+{
+	int i;
+
+	i = num == 0 ? 1 : 0 ;
+	while (num)
+	{
+		i++;
+		num /= 10;
+	}
+	if (neg)
+		i++;
+	i += h;
+	// ft_printf("i = %d\n", i);
+	return (i);
+}
+
+long long		ft_atoi_size(const char *str, uint8_t size)
+// int32_t		ft_atoi_size(const char *str, uint8_t size)
 {
 	int				neg;
 	int				i;
-	int64_t			num;
+	unsigned long long		num;
+	int h;
 
 	i = 0;
 	neg = 0;
 	num = 0;
+	h = 0;
 	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
 		i++;
 	if (str[i] == '-')
 		neg = 1;
 	if ((str[i] == '-') || (str[i] == '+'))
 		i++;
+	// while (str[i] == '0')
+	// {
+	// 	h++;
+	// 	i++;
+	// }
 	while (str[i] >= 48 && str[i] <= 57)
 	{
 		num *= 10;
 		num += ((int)str[i] - 48);
 		i++;
 	}
+
+	// ft_printf("%llu\n", num);
+	if (num > INT64_MAX || nbrlen(num, neg, h) != ft_strlen(str))
+	{
+		if (neg)
+			num = 0;
+		else
+			num = INT64_MAX;
+	}
+	// ft_printf("%llu\n", num);
 	num = (neg == 1 ? -num : num);
+	// ft_printf("%hx\n", num);
 	size == 1 ? (num = (uint8_t)num) : 1;
 	size == 2 ? (num = (int16_t)num) : 1;
+	// if (size == 4 && )
 	size == 4 ? (num = (int32_t)num) : 1;
 	return (num);
 }
@@ -80,3 +117,36 @@ int			check_reg(char *line, int len)
 	}
 	return (0);
 }
+
+
+
+
+
+
+// int32_t		ft_atoi_size(const char *str, uint8_t size)
+// {
+// 	int				neg;
+// 	int				i;
+// 	int64_t			num;
+
+// 	i = 0;
+// 	neg = 0;
+// 	num = 0;
+// 	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
+// 		i++;
+// 	if (str[i] == '-')
+// 		neg = 1;
+// 	if ((str[i] == '-') || (str[i] == '+'))
+// 		i++;
+// 	while (str[i] >= 48 && str[i] <= 57)
+// 	{
+// 		num *= 10;
+// 		num += ((int)str[i] - 48);
+// 		i++;
+// 	}
+// 	num = (neg == 1 ? -num : num);
+// 	size == 1 ? (num = (uint8_t)num) : 1;
+// 	size == 2 ? (num = (int16_t)num) : 1;
+// 	size == 4 ? (num = (int32_t)num) : 1;
+// 	return (num);
+// }

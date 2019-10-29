@@ -13,9 +13,9 @@
 #ifndef ASM_H
 # define ASM_H
 
-# include "../../libft/includes/libft.h"
-# include "../../libft/includes/get_next_line.h"
-# include "../../libft/includes/ft_printf.h"
+# include "../../libft_asm/includes/libft.h"
+# include "../../libft_asm/includes/get_next_line.h"
+# include "../../libft_asm/includes/ft_printf.h"
 # include "asm_ops.h"
 # include "op.h"
 
@@ -132,7 +132,8 @@ void					add_token(t_ass *d_asm, t_type type);
 void					error(t_ass *d_asm, char *str, t_tkn *tkn, int fl);
 void					skip_spaces(t_ass	*d_asm, char *line);
 void					skip_comm(t_ass	*d_asm, char *line);
-int32_t					ft_atoi_size(const char *str, uint8_t size);
+// int32_t					ft_atoi_size(const char *str, uint8_t size);
+long long				ft_atoi_size(const char *str, uint8_t size);
 int						check_reg(char *line, int len);
 
 #endif
