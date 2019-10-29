@@ -35,6 +35,43 @@ void		add_text(t_ass *d_asm, char *line, t_type type)
 		error(d_asm, TEXT, 0, 0);
 }
 
+// static int check(t_ass *d_asm)
+// {
+// 	t_lbl *temp;
+
+// 	temp = d_asm->lbl;
+// 	while (temp->next)
+// 	{
+// 		if (ft_strequ(temp->locat->cont, temp->next->locat->cont))
+// 			return (1);
+// 		temp = temp->next;
+// 	}
+// 	return (0);
+// }
+
+// void		add_text(t_ass *d_asm, char *line, t_type type)
+// {
+// 	int		temp;
+// 	int		lenres;
+
+// 	temp = J;
+// 	add_token(d_asm, type);
+// 	while (line[J] && ft_findchar(LABEL_CHARS, line[J]))
+// 		J++;
+// 	lenres = J - temp;
+// 	d_asm->tkn->cont = ft_strsub(line, temp, lenres);
+// 	if (lenres && line[J] == LABEL_CHAR && !(check(d_asm)))
+// 		add_label(d_asm);
+// 	else if (lenres && (SPACER1(line[J]) || SPACER2(line[J])))
+// 	{
+// 		if (type == INDIRECT)
+// 			d_asm->tkn->type = (check_reg(line + temp, lenres))
+// 			? REGISTER : INSTRUCTION;
+// 	}
+// 	else
+// 		error(d_asm, TEXT, 0, 0);
+// }
+
 static void	add_string(t_ass *d_asm, char **line)
 {
 	int		len;

@@ -37,11 +37,46 @@ static void		lable_duplicates(t_ass *d_asm)
 	temp = d_asm->lbl->next;
 	while (temp)
 	{
-		if (ft_strequ(origin, temp->locat->cont))
-			error(d_asm, LBL_NAME, temp->locat, 2);
+		// if (ft_strequ(origin, temp->locat->cont))
+		// 	error(d_asm, LBL_NAME, temp->locat, 2);
 		temp = temp->next;
 	}
 }
+
+// static int		lable_duplicates(t_ass *d_asm)
+// {
+// 	char	*origin;
+// 	t_lbl	*temp;
+
+// 	origin = d_asm->lbl->locat->cont;
+// 	temp = d_asm->lbl->next;
+// 	while (temp)
+// 	{
+// 		if (ft_strequ(origin, temp->locat->cont))
+// 			return (1);
+// 		temp = temp->next;
+// 	}
+// 	return (0);
+// }
+
+// void			add_label(t_ass *d_asm)
+// {
+// 	t_lbl	*new;
+
+// 	if (lable_duplicates(d_asm))
+// 		return ;
+// 	if (!(new = (t_lbl*)ft_memalloc(sizeof(t_lbl))))
+// 		error(d_asm, MEM, 0, 0);
+// 	ft_bzero(new, sizeof(new));
+// 	J++;
+// 	d_asm->tkn->type = LABEL;
+// 	new->locat = d_asm->tkn;
+// 	if (d_asm->lbl)
+// 		d_asm->lbl->prev = new;
+// 	new->next = d_asm->lbl;
+// 	d_asm->lbl = new;
+// 	// lable_duplicates(d_asm);
+// }
 
 void			add_label(t_ass *d_asm)
 {

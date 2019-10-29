@@ -59,11 +59,13 @@ int32_t			c(t_ass *d_asm, uint32_t bytes, t_tkn *lbl)
 	temp = d_asm->lbl;
 	while (temp)
 	{
-		if (ft_strequ(lbl->cont, temp->locat->cont))
+		while (temp->next)
+			temp = temp->next;
+		if (ft_strequ(lbl->cont/*%:live*/, temp->locat->cont/*live:*/))
 			break ;
-		temp = temp->next;
+		temp = temp->prev;
 	}
-	(!temp) ? error(d_asm, NO_LBL, lbl, 2) : 0;
+	// (!temp) ? error(d_asm, NO_LBL, lbl, 2) : 0;
 	move = temp->locat->bytes - bytes;
 	return (move);
 }
