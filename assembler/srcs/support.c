@@ -38,7 +38,7 @@ void		skip_comm(t_ass *d_asm, char *line)
 			J++;
 }
 
-static int nbrlen(unsigned long long num, int neg, int h)
+static int nbrlen(unsigned long long num, int neg)
 {
 	int i;
 
@@ -50,13 +50,10 @@ static int nbrlen(unsigned long long num, int neg, int h)
 	}
 	if (neg)
 		i++;
-	i += h;
-	// ft_printf("i = %d\n", i);
 	return (i);
 }
 
 long long		ft_atoi_size(const char *str, uint8_t size)
-// int32_t		ft_atoi_size(const char *str, uint8_t size)
 {
 	int				neg;
 	int				i;
@@ -73,20 +70,22 @@ long long		ft_atoi_size(const char *str, uint8_t size)
 		neg = 1;
 	if ((str[i] == '-') || (str[i] == '+'))
 		i++;
-	// while (str[i] == '0')
-	// {
-	// 	h++;
-	// 	i++;
-	// }
+	while (str[i] == '0')
+	{
+		h++;
+		i++;
+	}
 	while (str[i] >= 48 && str[i] <= 57)
 	{
 		num *= 10;
 		num += ((int)str[i] - 48);
 		i++;
 	}
-
 	// ft_printf("%llu\n", num);
-	if (num > INT64_MAX || nbrlen(num, neg, h) != ft_strlen(str))
+	// ft_printf("nbrlen = %d\n", nbrlen(num, neg));
+	// ft_printf("strlen = %d\n", ft_strlen(str));
+	// ft_printf("nulls = %d\n", h);
+	if ((num > INT64_MAX || nbrlen(num, neg) != (ft_strlen(str) - h)) && num != 0)
 	{
 		if (neg)
 			num = 0;
