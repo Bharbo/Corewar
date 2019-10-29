@@ -29,17 +29,17 @@ LIB_A = libft_asm/libft.a
 all: $(COR) $(ASM)
 
 $(COR): $(LIB_C) $(OBJ_COR)
-	gcc -g -Wall -Wextra -Werror -o $(COR) $(LIB_C) $(OBJ_COR)
+	gcc -Wall -Wextra -Werror -o $(COR) $(LIB_C) $(OBJ_COR)
 $(ASM): $(LIB_A) $(OBJ_ASM)
-	@gcc -g -Wall -Wextra -Werror -o $(ASM) $(LIB_A) $(OBJ_ASM)
+	@gcc -Wall -Wextra -Werror -o $(ASM) $(LIB_A) $(OBJ_ASM)
 $(LIB_C):
 	make -C ./libft_cor
 $(LIB_A):
 	@make -C ./libft_asm
 $(OBJ_COR) :%.o: vm/%.c corewar.h
-	gcc -g -c -I corewar.h $<
+	gcc -c -I corewar.h $<
 $(OBJ_ASM) :%.o: assembler/srcs/%.c assembler/srcs/asm.h assembler/srcs/asm_ops.h assembler/srcs/op.h
-	@gcc -g -c -I assembler/srcs/asm.h $<
+	@gcc -c -I assembler/srcs/asm.h $<
 clean:
 	@make clean -C ./libft_asm
 	@make clean -C ./libft_cor
